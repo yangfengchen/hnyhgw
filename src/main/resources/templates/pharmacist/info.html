@@ -1,0 +1,178 @@
+<div class="container-fluid" xmlns:th="http://www.w3.org/1999/xhtml">
+    <div class="row">
+        <div class="col-md-8 col-xs-8 defPadding">
+            <input type="hidden" name="presNo" th:value="${presNo}"/>
+            <input type="hidden" name="docId" th:value="${docId}"/>
+            <input type="hidden" name="docName" th:value="${docName}"/>
+            <input type="hidden" name="sourceTime" th:value="${sourceTime}"/>
+            <div th:if="${reviewCfInfoVo}">
+                <input type="hidden" name="cfOldId" th:value="${reviewCfInfoVo.oldId}"/>
+                <input type="hidden" name="cfNewId" th:value="${reviewCfInfoVo.newId}"/>
+                <div th:if="${reviewCfInfoVo.engDataEntity}" class="row">
+                    <div class="form-inline search-form">
+                        <div class="form-group">
+                            <label>类别</label>
+                            <div class="form-control"
+                                 th:text="${#strings.isEmpty(reviewCfInfoVo.engDataEntity.payType)} ? '自费': ''"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>医疗证/医保卡号</label>
+                            <div class="form-control" th:text="${reviewCfInfoVo.engDataEntity.patientNo}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>处方号</label>
+                            <div class="form-control" th:text="${reviewCfInfoVo.engDataEntity.presNo}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>门诊/住院病历号</label>
+                            <div class="form-control" th:text="${reviewCfInfoVo.engDataEntity.patientNo}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>姓名</label>
+                            <div class="form-control" th:text="${reviewCfInfoVo.engDataEntity.name}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>性别</label>
+                            <div class="form-control" th:text="${reviewCfInfoVo.engDataEntity.sex}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>年龄</label>
+                            <div class="form-control" th:text="${reviewCfInfoVo.engDataEntity.age}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>体重</label>
+                            <div class="form-control" th:text="${reviewCfInfoVo.engDataEntity.weight}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>科室(病区/床位号)</label>
+                            <div class="form-control" th:text="${reviewCfInfoVo.engDataEntity.department}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>临床诊断</label>
+                            <div class="form-control" th:text="${reviewCfInfoVo.engDataEntity.diagnose}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>开具日期</label>
+                            <div class="form-control" th:text="${reviewCfInfoVo.engDataEntity.presDateTime}"></div>
+                        </div>
+                        <div class="form-group">
+                            <label>住址/电话</label>
+                            <div class="form-control">
+                                <span th:text="${reviewCfInfoVo.engDataEntity.address}"></span>/<span
+                                    th:text="${reviewCfInfoVo.engDataEntity.phoneNo}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div th:if="${reviewCfInfoVo.engDataMessageEntities}" class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <table id="engDataMessageEntity" class="table table-bordered table-striped data-table">
+                            <thead>
+                            <tr>
+                                <th>药品名称</th>
+                                <th>警示等级</th>
+                                <th>警示信息</th>
+                                <th>建议</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="engDataMessageEntitie : ${reviewCfInfoVo.engDataMessageEntities}">
+                                <td class="left" >
+                                    <a th:href="'e_'+${engDataMessageEntitie.drugName}" class="point"><span th:text="${engDataMessageEntitie.drugName}"></span></a>
+                                </td>
+                                <td class="left" th:text="${engDataMessageEntitie.severity}"></td>
+                                <td class="left" th:text="${engDataMessageEntitie.message}"></td>
+                                <td class="left" th:text="${engDataMessageEntitie.advice}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div th:if="${reviewCfInfoVo.engDataItemEntitys}" class="row">
+                    <div class="col-md-12 col-xs-12">
+                        <table class="table table-bordered table-striped data-table">
+                            <thead>
+                            <tr>
+                                <th>组号</th>
+                                <th>类型</th>
+                                <th>药品名称</th>
+                                <th>剂型</th>
+                                <th>规格</th>
+                                <th>数量</th>
+                                <th>给药途径</th>
+                                <th>给药频率</th>
+                                <th>给药剂量</th>
+                            </tr>
+                            </thead>
+                             <tbody>
+                                 <tr th:each="engDataItemEntity : ${reviewCfInfoVo.engDataItemEntitys}">
+                                     <td th:text="${engDataItemEntity.groupNo}"></td>
+                                     <td th:text="${#strings.isEmpty(reviewCfInfoVo.engDataEntity.presNo)}? '': (${#strings.startsWith(#strings.toUpperCase(reviewCfInfoVo.engDataEntity.presNo),'Z')} ? ${engDataItemEntity.type}:'')">类型</td>
+                                     <td>
+                                         <a th:id="'e_'+${engDataItemEntity.drugName}"><span th:text="${engDataItemEntity.drugName}"></span></a>
+                                     </td>
+                                     <td th:text="${engDataItemEntity.prepForm}"></td>
+                                     <td th:text="${engDataItemEntity.spec}"></td>
+                                     <td th:text="${engDataItemEntity.quantity}"></td>
+                                     <td th:text="${engDataItemEntity.adminRoute}"></td>
+                                     <td th:text="${engDataItemEntity.adminFrequency}"></td>
+                                     <td th:text="${engDataItemEntity.adminDose}"></td>
+                                 </tr>
+                             </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-4">
+            <div class="row">
+                <div class="col-md-11 col-xs-11">
+                    <div class="communication_title">
+                        沟通
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11 col-xs-11">
+                    <div id="message_context" class="communication_context">
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-11 col-xs-11">
+                    <div class="communication_operate">
+                        <span class="sendMessageError"></span>
+                        <textarea name="message" style="width: 100%;height: 80px;resize:none;"></textarea>
+                        <button type="button"  class="btn btn-primary sendMessage" onclick="sendMessage('def')">发送</button>
+                        <span style="margin-left: 20px;font-weight: 700;">审核：</span>
+                        <button type="button"  class="btn btn-primary" style="" onclick="sendMessage('pass')">通过</button>
+                        <button type="button"  class="btn btn-primary" onclick="sendMessage('nogo')">不通过</button>
+                    </div>
+                </div>
+            </div>
+            <div th:if="${reviewCfInfoVo}" class="row">
+                <div th:if="${reviewCfInfoVo.messageType}" class="col-md-11 colxs-11">
+                    <div  class="communication_message_type">
+                        <div class="row">
+                            <div class="col-md-12 col-xs-12">
+                                <span style="font-weight: 700;">警示类型</span>
+                            </div>
+                        </div>
+                        <div  class="row">
+                            <div class="form-inline search-form">
+                                <div th:each="messageStr : ${reviewCfInfoVo.messageType}" class="form-group">
+                                    <div class="form-control message_type"
+                                         th:text="${messageStr}"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" th:src="@{/js/pharmacist/info.js}"></script>
+

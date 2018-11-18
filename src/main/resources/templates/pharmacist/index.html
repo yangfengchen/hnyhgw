@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head >
+    <th:block th:include="common/common_header :: common_header"></th:block>
+    <title>审方中心</title>
+    <!-- th:include="include/header :: head(~{::title},~{::link},~{::script})"
+     <meta charset="UTF-8">
+    <title>Title</title>
+    <link  rel="stylesheet" type="text/css" href="../css/base.css"/>
+    <script type="text/javascript" src="../js/base.js"></script>-->
+    <script type="text/javascript" th:src="@{/js/pharmacist/index.js}"></script>
+</head>
+<body>
+<div class="row">
+    <div class="col-md-12 col-xs-12">
+        <img th:src="@{/img/bg_header.png}" style="width: 100%"/>
+    </div>
+</div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <div class="form-search">
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <input name="project.waitTime" type="hidden" th:value="${waitTime}"/>
+                            <input name="reviewDocId" type="hidden" th:value="${reviewDocId}"/>
+                            <input name="reviewDocName" type="hidden" th:value="${reviewDocName}"/>
+                            <form id="data-form" class="form-inline search-form">
+                                <div class="form-group">
+                                    <label>医生名称</label>
+                                    <input type="text" class="form-control" name="docName" placeholder="医生名称">
+                                </div>
+                                <div class="form-group">
+                                    <label>患者名称</label>
+                                    <input type="text" class="form-control" id="name" placeholder="患者名称">
+                                </div>
+                                <div class="form-group">
+                                    <label>处方号</label>
+                                    <input type="text" class="form-control" id="presNo" placeholder="处方号">
+                                </div>
+                                <div class="form-group">
+                                    <label>性别</label>
+                                    <input type="text" class="form-control" id="sex" placeholder="性别">
+                                </div>
+                                <div class="form-group">
+                                    <label>列表数量</label>
+                                    <input type="text" class="form-control"  name="maxSize" value="20" placeholder="列表数量">
+                                </div>
+                                <button type="button" class="btn btn-primary" onclick="getListData()">查询</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <div style="color:red;" id="findMsgStatus">正在获取数据中,请等待...</div>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <div style="display: none;" id="errorContent"></div>
+            </div>
+            <div class="col-md-12 col-xs-12">
+                <div class="data-table-content">
+                    <table id="eng-data-list" class="table table-bordered table-striped data-table">
+                        <thead>
+                            <tr>
+                                <th>处方号</th>
+                                <th style="width: 140px;">处方日期</th>
+                                <th>患者号</th>
+                                <th style="width: 65px;">患者姓名</th>
+                                <th style="width: 65px;">年龄</th>
+                                <th style="width: 35px;">性别</th>
+                                <th>科室</th>
+                                <th style="width: 65px;">医生名</th>
+                                <th style="min-width: 80px;">诊断</th>
+                                <th style="min-width: 120px;">需审方结果</th>
+                                <th style="width: 55px;">审方等待时间</th>
+                            </tr>
+                        </thead>
+                        <tbody class="data-table-tbody">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

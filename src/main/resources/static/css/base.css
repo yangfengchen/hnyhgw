@@ -1,0 +1,78 @@
+.row{
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+}
+.row [class^="col-"]{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.communication_context{
+    overflow-y: auto;
+    min-height: 200px;
+    border: solid 2px  #1E9FFF;
+}
+.search-form{
+    margin: 10px auto;
+}
+.search-form .form-group{
+    margin-top: 5px;
+    margin-right: 10px;
+}
+.data-table{
+    width: 100%;
+}
+.data-table thead th{
+    text-align: center;
+}
+.data-table td{
+    text-align: right;
+}
+.data-table th.right,td.right{
+    text-align: right;
+}
+.data-table th.left,td.left{
+    text-align: left;
+}
+.data-table th.center,td.center{
+    text-align: center;
+}
+.defPadding{
+    padding:20px !important;
+}
+.communication_context span{
+    word-break: normal;
+    width: auto;
+    display: block;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    overflow: hidden;
+    margin: 2px auto;
+}
+.send-message-right{
+    text-align: right;
+    padding-left: 5px;
+}
+.send-message-right .send-message-content{
+    padding-right: 15px;
+    padding-left: 5px;
+}
+.send-message-left{
+    text-align: left;
+    padding-left: 5px;
+}
+.send-message-left .send-message-content{
+    padding-left: 15px;
+    padding-right: 5px;
+}
+.sendMessageError{
+    color:red;
+}
+.communication_title{
+    font-size: 20px;
+    font-weight: 700;
+}
+.communication_title,
+.communication_context,
+.communication_operate{
+    margin-bottom: 10px;
+}
