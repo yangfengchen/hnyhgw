@@ -36,7 +36,7 @@ spring:
       expose-spring-macro-helpers: false
       suffix: .ftl
       template-loader-path: classpath:/templates/
-
+      enabled: true
     cache:
       ehcache:
         config: classpath:ehcache.xml
