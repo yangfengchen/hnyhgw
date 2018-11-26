@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.sql.Date;
 
 @MappedSuperclass
-public class AbstractBaseEntity implements Serializable{
+public abstract class AbstractBaseEntity implements Serializable{
 
     private String id;
     private Date createTime;

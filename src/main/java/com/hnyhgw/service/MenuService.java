@@ -1,4 +1,6 @@
 package com.hnyhgw.service;
 
-public interface MenuService{
+import com.hnyhgw.entity.MenuEntity;
+
+public interface MenuService extends AbstractBaseService<MenuEntity,String>{
 }

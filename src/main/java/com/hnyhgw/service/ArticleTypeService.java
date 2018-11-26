@@ -1,4 +1,6 @@
 package com.hnyhgw.service;
 
-public interface ArticleTypeService {
+import com.hnyhgw.entity.ArticleTypeEntity;
+
+public interface ArticleTypeService extends AbstractBaseService<ArticleTypeEntity,String>{
 }

@@ -24,7 +24,7 @@ public class SpringBootJdbcTest {
 
     @Test
     public void testRepository(){
-        ArticleContentEntity articleContentEntity = articleContentService.findById("1");
+        ArticleContentEntity articleContentEntity = articleContentService.findById("134");
         if(articleContentEntity != null){
             System.out.println(articleContentEntity.getTitleName());
         }else{

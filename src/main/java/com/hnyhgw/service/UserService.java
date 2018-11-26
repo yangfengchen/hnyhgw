@@ -1,4 +1,6 @@
 package com.hnyhgw.service;
 
-public interface UserService {
+import com.hnyhgw.entity.UserEntity;
+
+public interface UserService extends AbstractBaseService<UserEntity,String> {
 }
