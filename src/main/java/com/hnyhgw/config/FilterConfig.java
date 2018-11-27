@@ -23,7 +23,7 @@ public class FilterConfig {
     public FilterRegistrationBean registFilterManage(){
         FilterRegistrationBean registration = new FilterRegistrationBean();
         registration.setFilter(new ProjectNameFilter());
-        registration.addUrlPatterns("/manage/");
+        registration.addUrlPatterns("/manage/*");
         registration.setName("ProjectNameFilter");
         registration.setOrder(1);
         return registration;
