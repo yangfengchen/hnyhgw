@@ -34,11 +34,12 @@ public class ManageLoginFilter implements Filter {
         String url = request.getRequestURI().substring(request.getContextPath().length());
         if (url.indexOf("/manage") != -1) {
             UserEntity userEntity = (UserEntity) request.getSession().getAttribute(KeysCommon.MANAGE_USER_KEY);
-            url = url.substring(url.indexOf(ManagePathCommon.COMMON_START_URL) + 7, url.length());
+            url = url.substring(url.indexOf(ManagePathCommon.COMMON_START_URL) + 8, url.length());
             if (userEntity == null) {
                 if (isParentUrl(url)) {
-                    RequestDispatcher dispatcher = request.getRequestDispatcher("/login");
+                     RequestDispatcher dispatcher = request.getRequestDispatcher("/manage/login");
                     dispatcher.forward(request, response);
+                    return;
                 }
             }
         }
@@ -64,9 +65,9 @@ public class ManageLoginFilter implements Filter {
                 }
             }).collect(Collectors.toList());
             if (CollectionUtils.isNotEmpty(ns)) {
-                return true;
-            } else {
                 return false;
+            } else {
+                return true;
             }
         }
         return true;
