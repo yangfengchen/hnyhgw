@@ -7,6 +7,7 @@ import com.hnyhgw.vo.AjaxResultVo;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,7 +29,7 @@ public class ManageLongController extends AbstractBaseController{
 
     @RequestMapping(value = "ajaxLogin",method = RequestMethod.POST)
     @ResponseBody
-    public AjaxResultVo ajaxLogin(@RequestParam("name")String name,@RequestParam("pwd")String pwd,HttpServletRequest request){
+    public AjaxResultVo ajaxLogin(String name,String pwd,HttpServletRequest request){
         if(StringUtils.isBlank(name) || StringUtils.isBlank(pwd)){
             return AjaxResultVo.builder().status(AjaxResultStatus.ERROR_CODE).message("用户名或者密码不能为空").build();
         }
@@ -41,6 +42,11 @@ public class ManageLongController extends AbstractBaseController{
             }
         }
         return AjaxResultVo.builder().status(AjaxResultStatus.ERROR_CODE).message("用户名或者密码不能为空").build();
+    }
+
+    @RequestMapping(value = "index")
+    public String index(Model model){
+        return ManagePathCommon.COMMON_START_URL+"index";
     }
 
 }

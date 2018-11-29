@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
     <#include "../common/script_common.ftl"/>
     <style type="text/css">
         html,body,.container{
@@ -12,7 +11,7 @@
     <script type="text/javascript">
         $(function () {
             $("#loginBtn").click(function () {
-                ajaxPostCommon("manage/ajaxLogin",undefined,loginBack);
+                ajaxPostCommon("manage/ajaxLogin",$("#myForm").serializeJson(),loginBack);
             });
         });
         function loginBack(data){
@@ -31,7 +30,7 @@
 </head>
 <body>
     <div class="container">
-        <form action="${ctx}/manage/login" method="post" style="width: 100%;height: 100%;display: table;">
+        <form id="myForm" action="${ctx}/manage/login" method="post" style="width: 100%;height: 100%;display: table;">
             <div style="display: table-cell;vertical-align: middle;">
                 <div  style="width: 300px;margin: 0 auto;">
                     <div class="form-group">

@@ -40,6 +40,7 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<UserEntity,String> 
             rs.put(AjaxResultStatus.MESSAGE_STR,"密码不正确！");
             return rs;
         }
+        rs.put(AjaxResultStatus.STATUS_STR,AjaxResultStatus.SUCCESS_CODE);
         request.getSession().setAttribute(KeysCommon.MANAGE_USER_KEY,userEntity);
         return rs;
     }

@@ -1,3 +1,4 @@
+<title>湖南引航教育官网</title>
 <link rel="stylesheet" href="${ctx}/css/bootstrap.min.css"/>
 <link rel="stylesheet" href="${ctx}/css/bootstrap-theme.min.css"/>
 <link rel="stylesheet" href="${ctx}/css/base.css"/>
