@@ -2,14 +2,17 @@ package com.hnyhgw.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
-@Table(name = "tbl_menu", schema = "hnyngw", catalog = "")
+@Table(name = "tbl_menu", schema = "hnyhgw", catalog = "")
 public class MenuEntity extends AbstractBaseEntity{
+
     private String name;
+    private String url;
     private Integer sort;
     private String parentId;
-    private Integer enable;
+    private Boolean enable;
     private String childerId;
 
     @Basic
@@ -20,6 +23,16 @@ public class MenuEntity extends AbstractBaseEntity{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Basic
+    @Column(name = "url")
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Basic
@@ -44,11 +57,11 @@ public class MenuEntity extends AbstractBaseEntity{
 
     @Basic
     @Column(name = "enable")
-    public Integer getEnable() {
+    public Boolean getEnable() {
         return enable;
     }
 
-    public void setEnable(Integer enable) {
+    public void setEnable(Boolean enable) {
         this.enable = enable;
     }
 
@@ -61,6 +74,5 @@ public class MenuEntity extends AbstractBaseEntity{
     public void setChilderId(String childerId) {
         this.childerId = childerId;
     }
-
 
 }

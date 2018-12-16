@@ -1,6 +1,8 @@
 package com.hnyhgw.service.impl;
 
 import com.hnyhgw.service.AttachmentService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -13,7 +15,10 @@ import java.util.Map;
 @Service
 public class AttachmentServiceImpl implements AttachmentService {
 
-    private static final String CK_IMAGE_PATH = File.separator + "uploadImage";
+    @Autowired
+    private Environment env;
+
+    private static final String CK_IMAGE_PATH = File.separator + "uploadFile";
 
     @Override
     public Map<String, String> ckEditorUploadImage(MultipartFile file, HttpServletRequest request) {
@@ -23,16 +28,14 @@ public class AttachmentServiceImpl implements AttachmentService {
         String originalName = file.getOriginalFilename();
         // generate file name
         String localFileName = System.currentTimeMillis() + "-" + originalName;
-        // get project path
-        String projectRealPath = request.getSession().getServletContext().getRealPath("");
-        // get the real path to store received images
-        String realPath = projectRealPath + CK_IMAGE_PATH;
+        //String projectRealPath = request.getSession().getServletContext().getRealPath("");
+        String realPath = getFilepath();
         File imageDir = new File(realPath);
         if(!imageDir.exists()) {
             imageDir.mkdirs();
         }
 
-        String localFilePath = realPath + File.separator + localFileName;
+        String localFilePath = getFilepath() + localFileName;
         try {
             file.transferTo(new File(localFilePath));
         } catch (IllegalStateException e) {
@@ -42,7 +45,7 @@ public class AttachmentServiceImpl implements AttachmentService {
             e.printStackTrace();
             // log here
         }
-        String imageContextPath = request.getContextPath() + "/uploadImage" + "/" + localFileName;
+        String imageContextPath = env.getProperty("server.servlet.context-path") + "/uploadFile" + "/" + localFileName;
         // log here +
         System.out.println("received file original name: " + originalName);
         System.out.println("stored local file name: " + localFileName);
@@ -58,6 +61,16 @@ public class AttachmentServiceImpl implements AttachmentService {
         result.put("url", relativeUrl);
 
         return result;
+    }
+
+    private String getFilepath(){
+        String projectOs = "linux";
+
+        String os = System.getProperty("os.name");
+        if(os.toLowerCase().startsWith("win")){
+            projectOs="windows";
+        }
+        return env.getProperty("upload."+projectOs);
     }
 
 }

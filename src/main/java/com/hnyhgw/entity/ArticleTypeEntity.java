@@ -1,16 +1,25 @@
+/*
+ * Copyright (c) 2018. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+ * Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
+ * Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
+ * Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
+ * Vestibulum commodo. Ut rhoncus gravida arcu.
+ */
+
 package com.hnyhgw.entity;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Objects;
 
 @Entity
-@Table(name = "tbl_article_type", schema = "hnyngw", catalog = "")
+@Table(name = "tbl_article_type", schema = "hnyhgw")
 public class ArticleTypeEntity extends AbstractBaseEntity{
+
     private String name;
-    private String titleCode;
     private String type;
     private Integer sort;
-    private Integer enable;
+    private Boolean enable;
 
     @Basic
     @Column(name = "name")
@@ -20,16 +29,6 @@ public class ArticleTypeEntity extends AbstractBaseEntity{
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Basic
-    @Column(name = "title_code")
-    public String getTitleCode() {
-        return titleCode;
-    }
-
-    public void setTitleCode(String titleCode) {
-        this.titleCode = titleCode;
     }
 
     @Basic
@@ -54,13 +53,12 @@ public class ArticleTypeEntity extends AbstractBaseEntity{
 
     @Basic
     @Column(name = "enable")
-    public Integer getEnable() {
+    public Boolean getEnable() {
         return enable;
     }
 
-    public void setEnable(Integer enable) {
+    public void setEnable(Boolean enable) {
         this.enable = enable;
     }
-
 
 }

@@ -18,6 +18,12 @@ public abstract class AbstractBaseServiceImpl<T,ID extends Serializable> impleme
     }
 
     @Override
+    public void saveAll(List<T> entitys) {
+        getAbstractBaseRepository().saveAll(entitys);
+    }
+
+
+    @Override
     public void deleteById(ID id) {
         getAbstractBaseRepository().deleteById(id);
     }
@@ -31,4 +37,5 @@ public abstract class AbstractBaseServiceImpl<T,ID extends Serializable> impleme
     public T findById(ID id) {
         return  getAbstractBaseRepository().findById(id).orElse(null);
     }
+
 }

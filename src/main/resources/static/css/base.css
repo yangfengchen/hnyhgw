@@ -1,3 +1,5 @@
+html,body{background-color:#f9f9f9;height: 100%;}
+.container,.container-fluid{padding: 0px;margin: 0px;height: 100%;}
 .row{
     margin-right: 0px !important;
     margin-left: 0px !important;
@@ -75,4 +77,93 @@
 .communication_context,
 .communication_operate{
     margin-bottom: 10px;
+}
+.val-display{
+    display: none;
+}
+.form-group-content-val{
+    padding-top: 7px;
+}
+.form-horizontal .form-group{
+    margin-right: 0px;
+    margin-left: 0px;
+}
+.frame-content,.frame-menu{
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #FFFFFF;
+}
+.breadcrumb-content{
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.option-tips-icon{
+    background: url(../img/option-tips.png);
+    background-size: 20px 20px;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+}
+.option-tips-content{
+    display: inline-block;
+    height: 20px;
+    margin: 20px 0px;
+}
+.html-option-css{
+    width: 200px;
+}
+.html-tree-option-css{
+    width: 260px;
+}
+.option-select{
+    height: 40px;
+}
+form .chosen-container{
+    height: 34px;
+}
+.option-btns{
+    text-align: center;
+}
+.hearder-content{
+    width: 100%;
+    height: 120px;
+    background-color: #D7FFF0;
+    position: fixed;
+    top:0px;
+    z-index: 2;
+}
+.index-img{
+    height: 120px;
+    width: 120px;
+}
+.hearder-title{
+    display: inline-block;
+    font-size: 30px;
+    font-weight: 700;
+}
+.border-common{
+    border:1px solid #ddd;
+}
+.footer-show{
+    margin-top: 20px;
+    width: 100%;
+    height: 100px;
+}
+.footer-hide{
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    text-align: center;
+    padding-top: 30px;
+    border:1px solid #ddd;
+    color: #000000;
+    background-color: #E8E8FF;
+    bottom:0px;
+}
+.main-content{
+    margin: 10px auto;
+}
+.portal-content{
+    height: 100%;
+    width: 100%;
 }

@@ -1,20 +1,33 @@
 package com.hnyhgw.entity;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.hnyhgw.config.JsonDateSerializer;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 @MappedSuperclass
 public abstract class AbstractBaseEntity implements Serializable{
 
     private String id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonSerialize(using=JsonDateSerializer.class)
     private Date createTime;
     private String createId;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonSerialize(using=JsonDateSerializer.class)
     private Date updateTime;
     private String udpateId;
+
+    public AbstractBaseEntity(){
+        this.updateTime = new Date();
+        this.createTime = new Date();
+    }
 
     @Id
     @Column(name = "id")

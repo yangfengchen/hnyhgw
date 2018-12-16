@@ -19,7 +19,7 @@ public class ManageLoginFilter implements Filter {
     /**
      * 封装，不需要过滤的list列表
      */
-    protected static List<String> patterns = Arrays.asList("/login", "/ajaxLogin");
+    protected static List<String> patterns = Arrays.asList("login", "ajaxLogin");
 
 
     @Override
@@ -34,7 +34,7 @@ public class ManageLoginFilter implements Filter {
         String url = request.getRequestURI().substring(request.getContextPath().length());
         if (url.indexOf("/manage") != -1) {
             UserEntity userEntity = (UserEntity) request.getSession().getAttribute(KeysCommon.MANAGE_USER_KEY);
-            url = url.substring(url.indexOf(ManagePathCommon.COMMON_START_URL) + 8, url.length());
+            url = url.substring(url.indexOf(ManagePathCommon.COMMON_START_URL) + 7, url.length());
             if (userEntity == null) {
                 if (isParentUrl(url)) {
                      RequestDispatcher dispatcher = request.getRequestDispatcher("/manage/login");
@@ -65,7 +65,11 @@ public class ManageLoginFilter implements Filter {
                 }
             }).collect(Collectors.toList());
             if (CollectionUtils.isNotEmpty(ns)) {
-                return false;
+                if(ns.size()>=2){
+                    return true;
+                }else{
+                    return false;
+                }
             } else {
                 return true;
             }

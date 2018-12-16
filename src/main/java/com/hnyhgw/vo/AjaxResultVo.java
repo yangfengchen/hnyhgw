@@ -1,8 +1,6 @@
 package com.hnyhgw.vo;
 
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 /**
  * @创建时间 2018/9/22
@@ -11,6 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
+@NoArgsConstructor(force = true)
+@AllArgsConstructor
 public class AjaxResultVo {
 
     //状态

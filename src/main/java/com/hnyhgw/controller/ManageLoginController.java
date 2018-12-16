@@ -15,7 +15,7 @@ import java.util.Map;
 
 @Controller
 @RequestMapping(value="manage")
-public class ManageLongController extends AbstractBaseController{
+public class ManageLoginController extends AbstractBaseController{
 
 
 

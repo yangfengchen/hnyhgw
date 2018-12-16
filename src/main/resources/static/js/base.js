@@ -57,31 +57,79 @@ var ajaxGetCommon = function(url,callBack,callData,errorBack){
         error:function () {
             if(errorBack && typeof(errorBack) == 'function'){
                 errorBack();
+            }else{
+                errorContent();
             }
         }
     });
 };
 var ajaxPostCommon = function(url,data,callBack,callData,errorBack){
-    if(!data){
-        data={};
+    var _option = {
+        data:data,
+        callBack:callBack,
+        callData:callData,
+        errorBack:errorBack
+    }
+    ajaxPostOption(url,_option);
+};
+var ajaxPostOption = function(url,_option){
+    if(!_option.data){
+        _option.data={};
+    }
+    if(_option.ansyc == undefined){
+        _option.ansyc = false;
     }
     $.ajax({
         url:$ctx+"/"+url,
-        data:data,
+        data:_option.data,
         type:"post",
+        ansyc:_option.ansyc,
         success:function (data) {
-            if(typeof(callBack) == 'function'){
-                if(callData){
-                    callBack(data,callData);
+            if(typeof(_option.callBack) == 'function'){
+                if(_option.callData){
+                    _option.callBack(data,_option.callData);
                 }else{
-                    callBack(data);
+                    _option.callBack(data);
                 }
             }
         },
         error:function (data) {
-            if(errorBack && typeof(errorBack) == 'function'){
-                callBack(data);
+            if(_option.errorBack && typeof(_option.errorBack) == 'function'){
+                _option.callBack(data);
+            }else{
+                errorContent();
             }
         }
     });
-};
+}
+
+var changeFrameContent = function(data){
+ $("#frame-content").html(data);
+}
+function changeFrameError(data) {
+    $("#frame-content").html();
+    errorContent();
+}
+var errorContent = function(){
+    layer.alert('系统错误，请联系管理员！^--^');
+}
+var initVal = function(_val,_defVal){
+    if(_val){
+        return _val;
+    }else{
+        if(_defVal){
+            return _defVal;
+        }else{
+            return "";
+        }
+    }
+}
+
+//转换日期格式(时间戳转换为datetime格式)
+function changeDateFormat(cellval, row, index) {
+    if(cellval.indexOf(":") != -1){
+        return cellval.substring(0,10);
+    }else{
+        return cellval;
+    }
+}

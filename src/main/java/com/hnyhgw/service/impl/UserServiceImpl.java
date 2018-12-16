@@ -3,12 +3,14 @@ package com.hnyhgw.service.impl;
 import com.google.common.collect.Maps;
 import com.hnyhgw.common.AjaxResultStatus;
 import com.hnyhgw.common.KeysCommon;
+import com.hnyhgw.dto.CommonRequestParamDto;
 import com.hnyhgw.entity.UserEntity;
 import com.hnyhgw.repository.AbstractBaseRepository;
 import com.hnyhgw.repository.UserRepository;
 import com.hnyhgw.service.UserService;
 import com.hnyhgw.util.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.util.StringUtils;
 
@@ -43,5 +45,10 @@ public class UserServiceImpl extends AbstractBaseServiceImpl<UserEntity,String> 
         rs.put(AjaxResultStatus.STATUS_STR,AjaxResultStatus.SUCCESS_CODE);
         request.getSession().setAttribute(KeysCommon.MANAGE_USER_KEY,userEntity);
         return rs;
+    }
+
+    @Override
+    public Page<UserEntity> findByPage(CommonRequestParamDto requestParamDto) {
+        return null;
     }
 }

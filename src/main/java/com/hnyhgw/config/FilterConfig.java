@@ -27,6 +27,10 @@ public class FilterConfig{
         registration.addUrlPatterns("/manage/*");
         registration.setName("manageFilter");
         registration.setOrder(2);
+        /*registration.setFilter(new ProjectNameFilter());
+        registration.addUrlPatterns("/*");
+        registration.setName("ProjectNameFilter");
+        registration.setOrder(1);*/
         return registration;
     }
 
